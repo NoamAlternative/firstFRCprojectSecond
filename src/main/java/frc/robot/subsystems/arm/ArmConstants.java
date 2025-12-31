@@ -21,10 +21,12 @@ public class ArmConstants {
     static final TrapezoidProfile.Constraints PROFILE_CONSTRAINTS =
             new TrapezoidProfile.Constraints(10, 20);
 
-    static final TrapezoidProfile.State
+    static final TrapezoidProfile PROFILE = new TrapezoidProfile(PROFILE_CONSTRAINTS);
+
+    /*static final TrapezoidProfile.State
             TARGET_PROFILE_STATE = new TrapezoidProfile.State(20,0),
             CURRENT_STATE = new TrapezoidProfile.State();
-
+*/
     static final ArmFeedforward FEED_FORWARD = new ArmFeedforward(1,1,1);
 
     private static final int
