@@ -23,10 +23,7 @@ public class ArmConstants {
 
     static final TrapezoidProfile PROFILE = new TrapezoidProfile(PROFILE_CONSTRAINTS);
 
-    /*static final TrapezoidProfile.State
-            TARGET_PROFILE_STATE = new TrapezoidProfile.State(20,0),
-            CURRENT_STATE = new TrapezoidProfile.State();
-*/
+    static final PIDController PID_CONTROLLER = new PIDController(1, 0, 0);
     static final ArmFeedforward FEED_FORWARD = new ArmFeedforward(1,1,1);
 
     private static final int
@@ -35,7 +32,6 @@ public class ArmConstants {
     static final TalonFX MOTOR = new TalonFX(MOTOR_ID);
     static final CANcoder ENCODER = new CANcoder(ENCODER_ID);
 
-    static final PIDController PID_CONTROLLER = new PIDController(1, 0, 0);
     static final StatusSignal<Angle> ANGLE_STATUS_SIGNAL = ENCODER.getPosition();
     static final boolean FOC_ENABLE = true;
 
