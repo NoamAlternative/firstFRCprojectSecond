@@ -24,7 +24,9 @@ public class ArmConstants {
     static final TrapezoidProfile PROFILE = new TrapezoidProfile(PROFILE_CONSTRAINTS);
 
     static final PIDController PID_CONTROLLER = new PIDController(1, 0, 0);
-    static final ArmFeedforward FEED_FORWARD = new ArmFeedforward(1,1,1);
+    static final ArmFeedforward FEED_FORWARD = new ArmFeedforward(1, 1, 1);
+
+    static final Rotation2d TOLERANCE = Rotation2d.fromDegrees(2);
 
     private static final int
             MOTOR_ID = 1,

@@ -19,16 +19,21 @@ public class Arm extends SubsystemBase {
     private final TrapezoidProfile profile = ArmConstants.PROFILE;
     private TrapezoidProfile.State goalState = new TrapezoidProfile.State();
     private TrapezoidProfile.State initialState = new TrapezoidProfile.State();
-    private ArmFeedforward feedforward = ArmConstants.FEED_FORWARD;
+    private final ArmFeedforward feedforward = ArmConstants.FEED_FORWARD;
 
     private final Timer profileTimer = new Timer();
 
     public Arm() {
     }
 
-    /*void setTargetState(ArmConstants.ArmState targetState) {
-        setTargetAngle(targetState.targetAngle);
-    }*/
+    public boolean atState(ArmConstants.ArmState targetState) {
+        Rotation2d currentAngle = getCurrentAngle();
+        Rotation2d targetAngle = targetState.targetAngle;
+
+        return Math.abs(
+                currentAngle.minus(targetAngle).getRotations()
+        ) <= ArmConstants.TOLERANCE.getRotations();
+    }
 
     void stop() {
         motor.stopMotor();
@@ -46,13 +51,6 @@ public class Arm extends SubsystemBase {
         double rotations = ArmConstants.ANGLE_STATUS_SIGNAL.refresh().getValueAsDouble();
         return Rotation2d.fromRotations(rotations);
     }
-
-
-/*   initializeMotionProfile
-
-    calculateSetpoint
-
-    followSetPoint     */
 
     void initializeMotionProfile(Rotation2d targetPosition) {
         initialState = new TrapezoidProfile.State(getCurrentAngle().getRotations(), encoder.getVelocity().getValueAsDouble());
